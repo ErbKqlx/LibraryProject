@@ -25,6 +25,11 @@ namespace LibraryProject
 
             lblUsername.Text = IsGuest ? "Гость" : $"{CurrentUser.Surname} {CurrentUser.Name} {CurrentUser.Patronymic}";
 
+            foreach (Button button in flowLayoutPanelButtons.Controls)
+            {
+                button.Visible = !isGuest;
+            }
+
             var colId = new DataGridViewTextBoxColumn();
             colId.Name = "colId";
             colId.Visible = false;
@@ -83,7 +88,7 @@ namespace LibraryProject
             {
                 MessageBox.Show($"Ошибка загрузки: {ex.Message}", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
         }
 
         private string FormatBookInfo(Book book)
@@ -119,6 +124,45 @@ namespace LibraryProject
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить книгу?",
+                "Удаление",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                try
+                {
+                    using (var db = new LibraryContext())
+                    {
+                        MessageBox.Show(dgvBooks.CurrentRow.Cells[0].Value.GetType().ToString());
+
+                        db.Remove(dgvBooks.CurrentRow.Cells[0].Value);
+                    }
+
+                    MessageBox.Show("Книга удалена",
+                        "Удаление",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"Ошибка удаления: {ex.Message}", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

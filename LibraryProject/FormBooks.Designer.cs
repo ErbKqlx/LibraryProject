@@ -29,12 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            flowLayoutPanel2 = new FlowLayoutPanel();
+            flowLayoutPanelButtons = new FlowLayoutPanel();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnLogout = new Button();
             lblUsername = new Label();
             dgvBooks = new DataGridView();
             panel1.SuspendLayout();
+            flowLayoutPanelButtons.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBooks).BeginInit();
             SuspendLayout();
@@ -42,7 +46,7 @@
             // panel1
             // 
             panel1.BackColor = Color.AliceBlue;
-            panel1.Controls.Add(flowLayoutPanel2);
+            panel1.Controls.Add(flowLayoutPanelButtons);
             panel1.Controls.Add(flowLayoutPanel1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -50,14 +54,56 @@
             panel1.Size = new Size(1099, 60);
             panel1.TabIndex = 0;
             // 
-            // flowLayoutPanel2
+            // flowLayoutPanelButtons
             // 
-            flowLayoutPanel2.Dock = DockStyle.Left;
-            flowLayoutPanel2.Location = new Point(0, 0);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Padding = new Padding(10);
-            flowLayoutPanel2.Size = new Size(566, 60);
-            flowLayoutPanel2.TabIndex = 1;
+            flowLayoutPanelButtons.Controls.Add(btnAdd);
+            flowLayoutPanelButtons.Controls.Add(btnEdit);
+            flowLayoutPanelButtons.Controls.Add(btnDelete);
+            flowLayoutPanelButtons.Dock = DockStyle.Left;
+            flowLayoutPanelButtons.Location = new Point(0, 0);
+            flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
+            flowLayoutPanelButtons.Padding = new Padding(10);
+            flowLayoutPanelButtons.Size = new Size(566, 60);
+            flowLayoutPanelButtons.TabIndex = 1;
+            // 
+            // btnAdd
+            // 
+            btnAdd.BackColor = Color.FromArgb(74, 111, 165);
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Location = new Point(13, 13);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(111, 32);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Добавить";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += BtnAdd_Click;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.FromArgb(74, 111, 165);
+            btnEdit.FlatAppearance.BorderSize = 0;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Location = new Point(130, 13);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(154, 32);
+            btnEdit.TabIndex = 2;
+            btnEdit.Text = "Редактировать";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += BtnEdit_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.FromArgb(74, 111, 165);
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(290, 13);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(111, 32);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Удалить";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += BtnDelete_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -127,6 +173,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Список книг";
             panel1.ResumeLayout(false);
+            flowLayoutPanelButtons.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBooks).EndInit();
@@ -136,10 +183,13 @@
         #endregion
 
         private Panel panel1;
-        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanelButtons;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btnLogout;
         private Label lblUsername;
         private DataGridView dgvBooks;
+        private Button btnAdd;
+        private Button btnEdit;
+        private Button btnDelete;
     }
 }
