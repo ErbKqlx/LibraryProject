@@ -8,10 +8,37 @@ namespace LibraryProject
         [STAThread]
         static void Main()
         {
+            bool exitProgram = false;
+
+            while (!exitProgram)
+            {
+                using (var formLogin = new FormLogin())
+                {
+                    if (formLogin.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var formBooks = new FormBooks(formLogin.CurrentUser, formLogin.IsGuest))
+                        {
+                            if (formBooks.ShowDialog() == DialogResult.Cancel)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                exitProgram = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        exitProgram = true;
+                    }
+                }
+            }
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new FormLogin());
+            //ApplicationConfiguration.Initialize();
+            //Application.Run(new FormLogin());
         }
     }
 }

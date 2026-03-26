@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryProject.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,10 @@ namespace LibraryProject
 {
     public partial class FormBooks : Form
     {
-        public FormBooks()
+        public FormBooks(User currentUser, bool isGuest)
         {
             InitializeComponent();
+
         }
     }
 }
