@@ -81,6 +81,7 @@
             btnSave.TabIndex = 2;
             btnSave.Text = "Сохранить";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += BtnSave_Click;
             // 
             // btnCancel
             // 
@@ -267,6 +268,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(717, 630);
             Controls.Add(label11);
             Controls.Add(txtAnnotation);

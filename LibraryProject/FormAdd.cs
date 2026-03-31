@@ -14,10 +14,17 @@ namespace LibraryProject
 {
     public partial class FormAdd : Form
     {
+        private long _selectedId;
         public FormAdd(long id = -1)
         {
             InitializeComponent();
+            _selectedId = id;
 
+            LoadBookInfo();
+        }
+
+        private void LoadBookInfo()
+        {
             using (var db = new LibraryContext())
             {
                 db.Authors.Load();
@@ -37,9 +44,9 @@ namespace LibraryProject
                 cmbPublishers.ValueMember = "Id";
 
                 Book book;
-                if (id != -1)
+                if (_selectedId != -1)
                 {
-                    book = db.Books.Find(id);
+                    book = db.Books.Find(_selectedId);
                 }
                 else
                 {
@@ -58,7 +65,47 @@ namespace LibraryProject
                 cmbPublishers.SelectedValue = book.IdPublisher;
 
 
-            }   
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            using (var db = new LibraryContext())
+            {
+
+                Book book;
+                if (_selectedId != -1)
+                {
+                    book = db.Books.Find(_selectedId);
+                }
+                else
+                {
+                    book = new Book();
+                }
+
+                book.Isbn = txtISBN.Text;
+                book.BookName = txtName.Text;
+                book.Annotation = txtAnnotation.Text;
+                book.PageCount = (short)numPageCount.Value;
+                book.TotalAmount = (short)numTotalAmount.Value;
+                book.AvailableAmount = (short)numAvailableAmount.Value;
+                book.PublishYear = (short)numPublishYear.Value;
+                book.IdAuthor = (int)cmbAuthors.SelectedValue;
+                book.IdGenre = (short)cmbGenres.SelectedValue;
+                book.IdPublisher = (int)cmbPublishers.SelectedValue;
+
+                if (_selectedId != -1)
+                {
+                    db.Books.Update(book);
+                }
+                else
+                {
+                    db.Books.Add(book);
+                }
+
+
+                db.SaveChanges();
+            }
         }
     }
 }

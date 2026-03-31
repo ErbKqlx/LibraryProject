@@ -132,13 +132,21 @@ namespace LibraryProject
             var formAdd = new FormAdd();
             formAdd.ShowDialog();
 
-            
+            if (formAdd.DialogResult == DialogResult.OK)
+            {
+                LoadBooks();
+            }
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             var formAdd = new FormAdd((long)dgvBooks.CurrentRow.Cells[0].Value);
             formAdd.ShowDialog();
+
+            if (formAdd.DialogResult == DialogResult.OK)
+            {
+                LoadBooks();
+            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
