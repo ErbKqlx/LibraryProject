@@ -50,10 +50,10 @@ namespace LibraryProject
                 colId, colPhoto, colInfo
             ]);
 
-            LoadProducts();
+            LoadBooks();
         }
 
-        private void LoadProducts()
+        private void LoadBooks()
         {
             try
             {
@@ -147,9 +147,14 @@ namespace LibraryProject
                 {
                     using (var db = new LibraryContext())
                     {
-                        MessageBox.Show(dgvBooks.CurrentRow.Cells[0].Value.GetType().ToString());
+                        //MessageBox.Show(dgvBooks.CurrentRow.Cells[0].Value.GetType().ToString());
 
-                        db.Remove(dgvBooks.CurrentRow.Cells[0].Value);
+                        var book = db.Books.Where(i => i.Id == (long)dgvBooks.CurrentRow.Cells[0].Value).FirstOrDefault();
+
+                        db.Books.Remove(book);
+                        db.SaveChanges();
+
+                        LoadBooks();
                     }
 
                     MessageBox.Show("Книга удалена",
