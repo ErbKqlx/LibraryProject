@@ -21,14 +21,34 @@ namespace LibraryProject
         public FormBooks(User currentUser, bool isGuest)
         {
             InitializeComponent();
+
+            //using (var db = new LibraryContext())
+            //{
+            //    db.Users.Include(i => i.IdRoleNavigation);
+            //}
+
             CurrentUser = currentUser;
             IsGuest = isGuest;
 
             lblUsername.Text = IsGuest ? "Гость" : $"{CurrentUser.Surname} {CurrentUser.Name} {CurrentUser.Patronymic}";
 
-            foreach (Button button in flowLayoutPanelButtons.Controls)
+            using (var db = new LibraryContext())
             {
-                button.Visible = !isGuest;
+                //if (db.Roles.Where(i => i.Id == CurrentUser.IdRole).FirstOrDefault().RoleName == "Администратор")
+                //{
+                //    foreach (Button button in flowLayoutPanelButtons.Controls)
+                //    {
+                //        button.Visible = true;
+                //    }
+                //}
+
+                if (CurrentUser.IdRoleNavigation.RoleName != "Администратор")
+                {
+                    foreach (Button button in flowLayoutPanelButtons.Controls)
+                    {
+                        button.Visible = false;
+                    }
+                }
             }
 
             var colId = new DataGridViewTextBoxColumn();

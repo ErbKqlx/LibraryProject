@@ -1,4 +1,5 @@
 using LibraryProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryProject
 {
@@ -28,7 +29,7 @@ namespace LibraryProject
 
             using (var db = new LibraryContext())
             {
-                var user = db.Users.Where(w => w.Login == txtLogin.Text && w.Password == txtPassword.Text)
+                var user = db.Users.Where(w => w.Login == txtLogin.Text && w.Password == txtPassword.Text).Include(i => i.IdRoleNavigation)
                     .FirstOrDefault();
 
                 if (user != null)
