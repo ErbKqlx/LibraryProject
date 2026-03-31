@@ -17,6 +17,7 @@ namespace LibraryProject
     {
         public User CurrentUser { get; private set; }
         public bool IsGuest { get; private set; }
+
         public FormBooks(User currentUser, bool isGuest)
         {
             InitializeComponent();
@@ -128,12 +129,16 @@ namespace LibraryProject
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            var formAdd = new FormAdd();
+            formAdd.ShowDialog();
 
+            
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-
+            var formAdd = new FormAdd((long)dgvBooks.CurrentRow.Cells[0].Value);
+            formAdd.ShowDialog();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
