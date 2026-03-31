@@ -100,6 +100,19 @@ namespace LibraryProject
                     book.IdGenre = (short)cmbGenres.SelectedValue;
                     book.IdPublisher = (int)cmbPublishers.SelectedValue;
 
+                    if (String.IsNullOrEmpty(book.Isbn)
+                        || String.IsNullOrEmpty(book.BookName)
+                        || String.IsNullOrEmpty(book.Annotation))
+                    {
+                        MessageBox.Show(
+                            $"Все поля должны быть заполнены",
+                            "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+                        
+
                     if (_selectedId != -1)
                     {
                         db.Books.Update(book);
@@ -116,7 +129,7 @@ namespace LibraryProject
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"",
+                    $"{ex.Message}",
                     "Ошибка",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

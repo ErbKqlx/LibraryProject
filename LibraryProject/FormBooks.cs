@@ -42,7 +42,7 @@ namespace LibraryProject
                 //    }
                 //}
 
-                if (CurrentUser.IdRoleNavigation.RoleName != "Администратор")
+                if (CurrentUser?.IdRoleNavigation.RoleName != "Администратор")
                 {
                     foreach (Button button in flowLayoutPanelButtons.Controls)
                     {
