@@ -33,6 +33,9 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
+            btnLoans = new Button();
+            label1 = new Label();
+            cmbSort = new ComboBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnLogout = new Button();
             lblUsername = new Label();
@@ -51,7 +54,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1099, 60);
+            panel1.Size = new Size(1099, 89);
             panel1.TabIndex = 0;
             // 
             // flowLayoutPanelButtons
@@ -59,11 +62,14 @@
             flowLayoutPanelButtons.Controls.Add(btnAdd);
             flowLayoutPanelButtons.Controls.Add(btnEdit);
             flowLayoutPanelButtons.Controls.Add(btnDelete);
+            flowLayoutPanelButtons.Controls.Add(btnLoans);
+            flowLayoutPanelButtons.Controls.Add(label1);
+            flowLayoutPanelButtons.Controls.Add(cmbSort);
             flowLayoutPanelButtons.Dock = DockStyle.Left;
             flowLayoutPanelButtons.Location = new Point(0, 0);
             flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
             flowLayoutPanelButtons.Padding = new Padding(10);
-            flowLayoutPanelButtons.Size = new Size(566, 60);
+            flowLayoutPanelButtons.Size = new Size(609, 89);
             flowLayoutPanelButtons.TabIndex = 1;
             // 
             // btnAdd
@@ -105,16 +111,48 @@
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += BtnDelete_Click;
             // 
+            // btnLoans
+            // 
+            btnLoans.BackColor = Color.FromArgb(74, 111, 165);
+            btnLoans.FlatAppearance.BorderSize = 0;
+            btnLoans.FlatStyle = FlatStyle.Flat;
+            btnLoans.Location = new Point(407, 13);
+            btnLoans.Name = "btnLoans";
+            btnLoans.Size = new Size(111, 32);
+            btnLoans.TabIndex = 4;
+            btnLoans.Text = "Выдачи";
+            btnLoans.UseVisualStyleBackColor = false;
+            btnLoans.Click += BtnLoans_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 48);
+            label1.Name = "label1";
+            label1.Size = new Size(387, 21);
+            label1.TabIndex = 6;
+            label1.Text = "Сортировка по кол-ву доступных экземпляров";
+            // 
+            // cmbSort
+            // 
+            cmbSort.FormattingEnabled = true;
+            cmbSort.Items.AddRange(new object[] { "по убыванию", "по возрастанию" });
+            cmbSort.Location = new Point(406, 51);
+            cmbSort.Name = "cmbSort";
+            cmbSort.Size = new Size(165, 29);
+            cmbSort.TabIndex = 5;
+            cmbSort.SelectedIndexChanged += CmbSort_SelectedIndexChanged;
+            // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Controls.Add(btnLogout);
             flowLayoutPanel1.Controls.Add(lblUsername);
             flowLayoutPanel1.Dock = DockStyle.Right;
-            flowLayoutPanel1.Location = new Point(572, 0);
+            flowLayoutPanel1.Location = new Point(615, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(10);
             flowLayoutPanel1.RightToLeft = RightToLeft.Yes;
-            flowLayoutPanel1.Size = new Size(527, 60);
+            flowLayoutPanel1.Size = new Size(484, 89);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // btnLogout
@@ -122,7 +160,7 @@
             btnLogout.BackColor = Color.FromArgb(74, 111, 165);
             btnLogout.FlatAppearance.BorderSize = 0;
             btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Location = new Point(393, 13);
+            btnLogout.Location = new Point(350, 13);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(111, 32);
             btnLogout.TabIndex = 0;
@@ -133,7 +171,7 @@
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(334, 10);
+            lblUsername.Location = new Point(291, 10);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(53, 21);
             lblUsername.TabIndex = 1;
@@ -150,13 +188,13 @@
             dgvBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBooks.ColumnHeadersVisible = false;
             dgvBooks.Dock = DockStyle.Fill;
-            dgvBooks.Location = new Point(0, 60);
+            dgvBooks.Location = new Point(0, 89);
             dgvBooks.MultiSelect = false;
             dgvBooks.Name = "dgvBooks";
             dgvBooks.ReadOnly = true;
             dgvBooks.RowHeadersVisible = false;
             dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBooks.Size = new Size(1099, 553);
+            dgvBooks.Size = new Size(1099, 524);
             dgvBooks.TabIndex = 1;
             // 
             // FormBooks
@@ -174,6 +212,7 @@
             Text = "Список книг";
             panel1.ResumeLayout(false);
             flowLayoutPanelButtons.ResumeLayout(false);
+            flowLayoutPanelButtons.PerformLayout();
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBooks).EndInit();
@@ -191,5 +230,8 @@
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
+        private Button btnLoans;
+        private ComboBox cmbSort;
+        private Label label1;
     }
 }

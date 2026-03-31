@@ -71,6 +71,8 @@ namespace LibraryProject
                 colId, colPhoto, colInfo
             ]);
 
+            cmbSort.SelectedIndex = 0;
+
             LoadBooks();
         }
 
@@ -85,6 +87,15 @@ namespace LibraryProject
                         .Include(i => i.IdGenreNavigation)
                         .Include(i => i.IdPublisherNavigation)
                         .ToList();
+
+                    if (cmbSort.SelectedIndex == 0)
+                    {
+                        books = books.OrderByDescending(i => i.AvailableAmount).ToList();
+                    }
+                    else
+                    {
+                        books = books.OrderBy(i => i.AvailableAmount).ToList();
+                    }
 
                     dgvBooks.SuspendLayout();
                     dgvBooks.Rows.Clear();
@@ -195,12 +206,36 @@ namespace LibraryProject
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка удаления: {ex.Message}", "Ошибка",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+        private void BtnLoans_Click(object sender, EventArgs e)
+        {
+            var formLoans = new FormLoans();
+            formLoans.ShowDialog();
+            this.Close();
+        }
+
+        private void CmbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadBooks();
+        }
+
+        //private void SortBooks()
+        //{
+        //    if (cmbSort.SelectedIndex == 0)
+        //    {
+                
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
     }
 }
