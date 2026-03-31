@@ -32,14 +32,17 @@ namespace LibraryProject
                 db.Publishers.Load();
 
                 cmbAuthors.DataSource = db.Authors.Local.ToBindingList();
+                //cmbAuthors.SelectedIndex = 0;
                 cmbAuthors.DisplayMember = "AuthorName";
                 cmbAuthors.ValueMember = "Id";
 
                 cmbGenres.DataSource = db.Genres.Local.ToBindingList();
+                //cmbAuthors.SelectedIndex = 0;
                 cmbGenres.DisplayMember = "GenreName";
                 cmbGenres.ValueMember = "Id";
 
                 cmbPublishers.DataSource = db.Publishers.Local.ToBindingList();
+                //cmbAuthors.SelectedIndex = 0;
                 cmbPublishers.DisplayMember = "PublisherName";
                 cmbPublishers.ValueMember = "Id";
 
@@ -47,6 +50,10 @@ namespace LibraryProject
                 if (_selectedId != -1)
                 {
                     book = db.Books.Find(_selectedId);
+
+                    cmbAuthors.SelectedValue = book.IdAuthor;
+                    cmbGenres.SelectedValue = book.IdGenre;
+                    cmbPublishers.SelectedValue = book.IdPublisher;
                 }
                 else
                 {
@@ -60,9 +67,7 @@ namespace LibraryProject
                 numTotalAmount.Value = book.TotalAmount;
                 numAvailableAmount.Value = book.AvailableAmount;
                 numPublishYear.Value = book.PublishYear;
-                cmbAuthors.SelectedValue = book.IdAuthor;
-                cmbGenres.SelectedValue = book.IdGenre;
-                cmbPublishers.SelectedValue = book.IdPublisher;
+                
 
 
             }
@@ -111,7 +116,7 @@ namespace LibraryProject
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"{ex.Message}",
+                    $"",
                     "Ошибка",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
