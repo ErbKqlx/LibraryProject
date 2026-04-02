@@ -216,7 +216,7 @@ namespace LibraryProject
 
         private void BtnLoans_Click(object sender, EventArgs e)
         {
-            var formLoans = new FormLoans();
+            var formLoans = new FormLoans(CurrentUser);
             formLoans.ShowDialog();
             this.Close();
         }
